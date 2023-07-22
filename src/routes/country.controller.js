@@ -34,7 +34,7 @@ export const createCountry = async (req, res) => {
   try {
     const countries = await req.body;
     countries?.forEach((country) => {
-      let countryy = countryModel({
+      countryModel.create({
         name: {
           common: country.name.common,
           nativeName: country.name.nativeName,
@@ -61,14 +61,6 @@ export const createCountry = async (req, res) => {
           };
         }),
       });
-      countryy
-        .save()
-        .then(function (doc) {
-          console.log(doc._id.toString());
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
     });
     res.json("countries created");
   } catch (error) {
